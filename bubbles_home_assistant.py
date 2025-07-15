@@ -11,7 +11,7 @@ from pool_control import PoolControlBubble
 logger = logging.getLogger(__name__)
 
 class HomeAssistantBubble(UniversalBubble):
-    def __init__(self, object_id: str, context: SystemContext, ha_url: str = "http://10.0.0.146:8123", ha_token: str = None):
+    def __init__(self, object_id: str, context: SystemContext, ha_url: str = "http://10.0.0.XXXXX", ha_token: str = None):
         super().__init__(object_id=object_id, context=context)
         # Validate SystemContext
         if not hasattr(context, 'event_service'):
