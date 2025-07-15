@@ -38,193 +38,140 @@ Beyond simulation, the Bubbles Network directly manages and adapts your real-wor
 - Event-driven automation: Set up custom automations, triggers, and feedback loops, or let the system learn emergent patterns for you.
 - Live feedback: All real-world state, metrics, and events are available to your RL agents, LLMs, and quantum models in real time.
 
-**Example:**  
+Example: 
 - Type `turn_on_pool` or `hw_profile performance` in chat—the system dispatches the right command, controls Home Assistant, and updates the state everywhere (including quantum/AI agents).
+
 
 ---
 
-BUBBLES SYSTEM (main.py, SystemContext)
-│
-├── EventBus / Dispatcher
-│    ├─ Event subscriptions by type, bubble, priority
-│    └─ Async event routing (system-wide)
-│
-├── UniversalBubble (Base class for all Bubbles)
-│    └─ All "Bubble" subclasses inherit core event logic
-│
-├── SerializationBubble (must start first)
-│    ├─ UniversalCode/Tags/Actions enum serialization
-│    └─ Handles special object serialization for all bubbles
-│
-├── LogMonitorBubble
-│    ├─ Listens to logs (WARNING/ERROR)
-│    ├─ Pattern detection → events for Overseer
-│    └─ Aggregates & rate-limits warnings
-│
-├── M4HardwareBubble
-│    ├─ Monitors CPU, GPU, memory, thermal, power, neural engine
-│    ├─ Publishes hardware metrics/events
-│    └─ Handles cleanup, throttling, diagnostics
-│
-├── QFDBubble
-│    ├─ Quantum Fractal Dynamics simulation (HyperdimensionalQFD)
-│    ├─ Emits PERFORMANCE_METRIC, PHASE_TRANSITION_DETECTED, etc.
-│    ├─ Accepts TUNING_UPDATE, RL_ACTION, START_SIMULATION, PAUSE_SIMULATION
-│    └─ Outputs advanced consciousness, entropy, fd, phi, topology metrics
-│
-├── QMLBubble
-│    ├─ Quantum ML (QNN, QSVC, QRL, etc.), PennyLane+Qiskit
-│    ├─ M4 optimization, precision fixes
-│    ├─ Receives SENSOR_DATA
-│    ├─ Accepts qml_status, qml_train, qml_predict, qml_optimize
-│    └─ Publishes quantum predictions/optimizations
-│
-├── QuantumOracleBubble
-│    ├─ Quantum information queries, code assistance
-│    ├─ Uses QMLBubble for backend when needed
-│    └─ Integrates with LLM and pattern recognition
-│
-├── DreamerV3Bubble
-│    ├─ Model-based RL world model (DreamerV3)
-│    ├─ RL agent (observation/policy/model loss)
-│    ├─ Used by PPO/meta-RL orchestrators
-│
-├── FullEnhancedPPOWithMetaLearning
-│    ├─ Top-level RL agent with meta-learning
-│    ├─ Hierarchical, algorithm spawning, consciousness explorer
-│    ├─ Can propose/tune/monitor all parameterized bubbles
-│    └─ MetaLearningOrchestrator (controls, evaluates, explores)
-│
-├── TuningBubble
-│    ├─ Auto-tuning and parameter sweep orchestrator
-│    ├─ Interfaces with DreamerV3, QFD, QML for parameter updates
-│
-├── APIBubble
-│    ├─ Handles REST API calls, connects to external services
-│
-├── HomeAssistantBubble / PoolControlBubble
-│    ├─ Home automation control, pool management
-│    └─ Receives/dispatches HA_CONTROL events
-│
-├── CompositeBubble
-│    ├─ Container for all other bubbles (sub_bubble_list)
-│    ├─ Unified lifecycle management (start/stop/self_destruct)
-│
-├── SimpleLLMBubble / CreativeSynthesisBubble / FeedbackBubble
-│    ├─ Various LLM-based assistant, creativity, feedback, and knowledge bubbles
-│    ├─ Receive LLM_QUERY, output LLM_RESPONSE
-│
-├── MetaReasoningBubble / DynamicManagerBubble / OverseerBubble
-│    ├─ High-level reasoning, task spawning, resource allocation, self-healing
-│    └─ Can spawn new Bubbles, repair, manage failures
-│
-├── RAGBubble
-│    ├─ Retrieval-Augmented Generation (vector DB, embeddings)
-│    └─ Used for better LLM responses
-│
-├── APEPBubble (Automatic Prompt & Code Enhancement Pipeline)
-│    ├─ Refines prompts/code for LLMs
-│    ├─ Applies “foundational five” and advanced techniques
-│    ├─ Maintains performance cache, triggers improvements
-│
-├── Flood Control System
-│    ├─ Limits LLM/LLM-assisted requests from Oracle/Overseer/M4Hardware
-│    └─ Logs, stats, enable/disable at runtime
-│
-├── (If needed) PPOBubble (fallback basic RL agent)
-│
-├── [Possible User extensions]
-│    ├─ MathematicalDiscoveryBubble (pattern/law detection, see above)
-│    ├─ PhysicsDiscoveryBubble    (physics/phase transitions/etc.)
-│    ├─ HypothesisTestingBubble   (validate/experiment on discoveries)
-│
-├── [User-Facing]
-│    ├─ ChatBox      (user command input/output)
-│    ├─ Web Server   (optional, exposes REST/Web interface)
-│    └─ All event-driven, live status/metrics/visuals
-│
-└── (SystemContext ties it all together, maintains registry)
+Bubbles System Architecture
 
-====================================================================
-[ Event/Data Flow & Feedback ]
-====================================================================
-User / Autonomous events
-   ↓
-[ EventBus / Dispatcher ]
-   ↓
-All Bubbles (in parallel, by subscription)
-   │
-   ├─ Hardware events/metrics → DreamerV3, QFD, RL agents, QML, API, LogMonitor
-   ├─ LLM queries/responses → LLM, Oracle, Creative, RAG, APEP, etc.
-   ├─ Performance/metrics (QFD, QML, PPO, DreamerV3) → PPO, Overseer, Tuning, Discovery, LogMonitor
-   ├─ Error/warning logs   → LogMonitor → Overseer
-   ├─ Flood Control events → Oracle, Overseer, M4Hardware
-   ├─ Serialization events → SerializationBubble
-   ├─ Home Automation      → HomeAssistant/PoolControl
-   └─ Parameter tuning     → QFDBubble, QMLBubble, DreamerV3Bubble, TuningBubble
-
-Feedback:
-   - Discovery/Pattern Bubbles publish events, request experiments, or escalate to user.
-   - RL/MetaRL agents receive metrics, propose new actions, or spawn new algorithms.
-   - OverseerBubble and MetaLearningOrchestrator coordinate repairs and system-level adaptation.
-   - APEP continually refines prompts and code for all LLM flows.
-   - LogMonitor triggers auto-repair and alerts via event feedback.
-
-====================================================================
-[ Composition / Inheritance ]
-====================================================================
-UniversalBubble
-   │
-   ├─ CompositeBubble
-   │     └─ sub_bubble_list: [DreamerV3Bubble, QFDBubble, QMLBubble, ...]
-   ├─ DreamerV3Bubble
-   ├─ QFDBubble
-   ├─ QMLBubble
-   ├─ QuantumOracleBubble
-   ├─ TuningBubble
-   ├─ APIBubble
-   ├─ PoolControlBubble
-   ├─ HomeAssistantBubble
-   ├─ FeedbackBubble
-   ├─ SimpleLLMBubble
-   ├─ CreativeSynthesisBubble
-   ├─ MetaReasoningBubble
-   ├─ DynamicManagerBubble
-   ├─ OverseerBubble
-   ├─ RAGBubble
-   ├─ LogMonitorBubble
-   ├─ SerializationBubble
-   ├─ APEPBubble
-   └─ (Others)
-
-====================================================================
-[ Critical Startup Sequence (Simple) ]
-====================================================================
-main.py
-   ├─ Apply QML/M4 surgical fixes
-   ├─ Import/initialize SerializationBubble
-   ├─ Import/initialize LogMonitorBubble
-   ├─ Import/initialize M4HardwareBubble
-   ├─ Import/initialize all core/optional Bubbles
-   ├─ Initialize CompositeBubble(sub_bubble_list)
-   ├─ Start event loop(s)
-   └─ Start chat/webserver, dispatch enhanced test events
-
-====================================================================
-[ Real-World Data/Command Example ]
-====================================================================
-User types "qfd_start" → ChatBox → EventDispatcher
-    → QFDBubble (starts simulation)
-        → emits PERFORMANCE_METRIC
-            → DreamerV3, PPO, MetaLearningOrchestrator, QMLBubble, TuningBubble, Mathematical/PhysicsDiscoveryBubble, LogMonitorBubble, etc.
-                → LLM/Oracle/Creative Bubbles handle queries, APEP refines prompts
-                → OverseerBubble watches for errors, fixes, or spawns new bubbles
-                → All bubbles can publish events or escalate to user
-
-====================================================================
+The Bubbles Network is structured around a modular, event-driven framework orchestrated by `main.py` and the `SystemContext`. The architecture is composed of multiple specialized components, each called a “bubble,” which are independently developed, event-subscribing agents. Below is a breakdown of the major components and their roles:
 
 
 
+Core Infrastructure
+
+EventBus / Dispatcher:
+  Central message router. All events (commands, metrics, status, errors) are routed by type and priority to all subscribing bubbles asynchronously.
+
+UniversalBubble (Base class):
+  Every functional “bubble” inherits this base. It defines core event-handling, registration, and lifecycle management.
+
+---
+
+Core Bubbles
+
+SerializationBubble:
+  This must be initialized first. It ensures safe and robust serialization for all events and custom types (enums, UniversalCode, Tags, Actions).
+
+LogMonitorBubble:
+  Listens for WARNING and ERROR logs from all components. Detects patterns, escalates events to the Overseer, and rate-limits spammy warnings.
+
+M4HardwareBubble:
+  Monitors hardware resources (CPU, GPU, memory, thermal, power, neural engine). Publishes real-time hardware metrics and can trigger throttling, diagnostics, and cleanups.
+
+QFDBubble:
+  Runs the Quantum Fractal Dynamics simulation (HyperdimensionalQFD). Emits performance and phase transition metrics, accepts runtime tuning and RL-driven control, and exposes advanced quantum/consciousness metrics (entropy, fractal dimension, phi, topology, etc.).
+
+QMLBubble:
+  Handles quantum machine learning (QNN, QSVC, QRL) using PennyLane and Qiskit. Optimized for Apple Silicon (M4), accepts sensor data and training commands, and can publish quantum predictions or optimizations.
+
+QuantumOracleBubble:
+  Provides quantum information queries, code assistance, and integrates with both QMLBubble and LLM-based pattern recognition.
+
+DreamerV3Bubble:
+  Implements model-based RL using the DreamerV3 architecture. Works as a standalone world model or as a module in PPO/meta-RL orchestrators.
+
+FullEnhancedPPOWithMetaLearning:
+  Advanced, hierarchical RL agent with meta-learning and algorithm spawning. Coordinates, monitors, and tunes all parameterized bubbles. Includes a meta-learning orchestrator for system-wide evaluation and exploration.
+
+TuningBubble:
+  Handles automatic tuning, parameter sweeps, and interfaces with DreamerV3, QFD, and QML for parameter updates.
+
+APIBubble:
+  Provides REST API integration, allowing the system to connect and interact with external web services.
+
+HomeAssistantBubble / PoolControlBubble:
+  Bridges the event-driven AI with real-world IoT. Controls home automation, pools, and appliances, subscribing to and dispatching HA\_CONTROL events.
+
+CompositeBubble:
+  Container/manager for all other bubbles. Provides unified start/stop and destruction for grouped bubble lifecycles.
+
+* **SimpleLLMBubble, CreativeSynthesisBubble, FeedbackBubble:**
+  LLM-based modules for assistant/chat, creativity, feedback, and knowledge retrieval. They process LLM\_QUERY events and return LLM\_RESPONSE.
+
+* **MetaReasoningBubble, DynamicManagerBubble, OverseerBubble:**
+  High-level system reasoning, spawning of new agents, dynamic resource allocation, and automatic repair and recovery.
+
+* **RAGBubble:**
+  Retrieval-Augmented Generation module for semantic search and LLM grounding.
+
+* **APEPBubble:**
+  Automatic Prompt & Code Enhancement Pipeline. Refines prompts/code for LLMs using foundational and advanced prompt engineering, maintains a performance cache, and applies improvements system-wide.
+
+* **Flood Control System:**
+  Targeted rate limiter for LLM or LLM-assisted requests (for example, from Oracle, Overseer, M4Hardware). Tracks logs and can be toggled at runtime.
+
+---
+
+Optional or User-Defined Bubbles
+
+* **PPOBubble:**
+  Basic RL agent, used as a fallback if FullEnhancedPPO is unavailable.
+
+* **Discovery/Pattern Bubbles:**
+  MathematicalDiscoveryBubble, PhysicsDiscoveryBubble, and HypothesisTestingBubble for advanced research, pattern/law detection, phase transitions, and automated experimentation.
+
+---
+
+User Interface and System Control
+
+* **ChatBox:**
+  Command-line or web-based user command input/output.
+
+* **Web Server:**
+  Optional REST/web interface for monitoring and control.
+
+* **SystemContext:**
+  The central registry, maintains all bubbles, manages registration, event dispatching, and high-level configuration.
+
+---
+
+Event Flow and Feedback
+
+* **User and autonomous events** are dispatched by the EventBus to all relevant bubbles.
+* Hardware events, metrics, and warnings reach RL, DreamerV3, QFD, QML, API, and LogMonitor.
+* LLM queries and responses are handled by all LLM/Oracle/Creative modules, with APEP continuously refining prompts.
+* Performance/metrics from all major simulations and agents are routed to tuning, optimization, and meta-reasoning bubbles.
+* Errors and warnings are elevated to LogMonitor and Overseer for diagnosis, repair, and even auto-spawn of new bubbles.
+* Flood Control is enforced for high-risk bubbles.
+* Home automation and IoT events are controlled and monitored through HomeAssistantBubble and PoolControlBubble.
+* All events, discoveries, and escalations can ultimately reach the user through chat, logs, or web.
+
+---
+
+## **Startup Sequence**
+
+1. Apply QML/M4-specific hardware optimizations.
+2. Initialize the SerializationBubble (enabling safe serialization for the whole network).
+3. Start the LogMonitorBubble and hardware monitoring.
+4. Import and initialize all core and optional Bubbles, including advanced RL, quantum, and automation modules.
+5. Group all initialized bubbles within the CompositeBubble for unified management.
+6. Start the async event loop(s).
+7. Launch the chat/web interface, and begin dispatching events.
+
+---
+
+## **Example: Real-World Event Handling**
+
+When a user types `qfd_start` into the chat:
+
+* The command is dispatched to the EventDispatcher.
+* The QFDBubble receives it and starts the quantum fractal simulation.
+* As metrics are produced (PERFORMANCE\_METRIC), they are automatically routed to RL agents, tuning modules, LLM assistants, mathematical/physics discovery bubbles, and the log monitor.
+* These agents can respond, escalate, or take autonomous action (tuning parameters, spawning new agents, or alerting the user) based on those metrics.
+* All logs, errors, and significant discoveries are handled in real time.
 
 
 
