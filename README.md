@@ -43,4 +43,4 @@ The hierarchical decision-making adds layers that make debugging harder.
 Make sure to monitor memory and CPU usage and tune batch sizes accordingly.
 Logging is detailed; adjust verbosity for your needs.
 The system will ask for user help if it gets stuck.
-Before production, test carefully and consider disabling some advanced features.
+Before production, test carefully and consider disabling some  features.
