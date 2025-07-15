@@ -8,7 +8,7 @@ This module implements a PPO agent with some extra features like:
 Breaking decisions into three parts (strategy, tactics, and actions).
 A standard PPO training loop using clipped loss and advantage estimation.
 A system that gradually increases task difficulty during training.
-Simple explanations for why actions were taken.
+explanations for why actions were taken.
 Detcting when the agent struggles and asking for help.
 Running multiple algorithms and picking the best.
 Managing resources efficiently with object pooling and caching.
