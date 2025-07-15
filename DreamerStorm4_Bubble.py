@@ -3130,19 +3130,3 @@ Troubleshooting:
    - Review conflict resolution logic
    - Check network latency between agents
 
-Citation:
----------
-If you use DreamerV3Bubble in your research, please cite:
-```
-@software{dreamerv3bubble2025,
-  title={DreamerV3Bubble: A Hybrid STORM-DreamerV3 Agent for System Management},
-  author={Your Name},
-  year={2025},
-  url={https://github.com/yourusername/dreamerv3bubble}
-}
-```
-
-References:
-- STORM: arXiv:2310.09615
-- DreamerV3: arXiv:2301.04104
-"""
