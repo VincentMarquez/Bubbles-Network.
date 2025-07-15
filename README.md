@@ -21,23 +21,39 @@ Automated Discovery: Includes tools for automated pattern/law discovery in both 
 
 Core System Architecture
 EventBus/Dispatcher: Routes all messages/events by type and priority.
+
 UniversalBubble: Base class; all modules inherit core event logic.
+
 SerializationBubble: Handles safe serialization of all events/objects.
+
 LogMonitorBubble: Aggregates logs, detects patterns, escalates warnings.
+
 M4HardwareBubble: Tracks system resources; can trigger cleanup or diagnostics.
+
 QFDBubble: Runs high-dimensional quantum fractal simulations and metrics.
+
 QMLBubble: Quantum machine learning with real hardware or simulation.
+
 QuantumOracleBubble: Quantum info queries and LLM integration.
+
 DreamerV3Bubble: Model-based RL (DreamerV3).
+
 FullEnhancedPPOWithMetaLearning: Advanced PPO/Meta-RL agent.
+
 TuningBubble: Automatic hyperparameter sweeps and tuning.
+
 HomeAssistantBubble/PoolControlBubble: Smart home and IoT event integration.
+
 APIBubble: REST/web API interface.
+
 CompositeBubble: Container for bubble groups (start/stop lifecycle).
-MetaReasoning/Overseer/DynamicManager: High-level orchestration, spawning, auto-repair, resource management.
+
+MetaReasoning/Overseer/DynamicManager: High-level orchestration, spawning, auto-repair, resource management
+.
 RAGBubble, APEPBubble: LLM prompt optimization, retrieval-augmented search, and grounding.
 
 See code for more bubbles and optional modules (RL, pattern discovery, UI, feedback, etc.)
+
 Typical Startup Sequence
 Hardware optimization (Apple Silicon, QML, etc.)
 Start SerializationBubble (safe data transfer)
