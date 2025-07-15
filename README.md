@@ -15,6 +15,8 @@ Managing resources efficiently with object pooling and caching.
 It’s built to run inside an event-driven system that handles training and reacting to external events asynchronously.
 How to use it
 Create an instance by giving it a unique ID and system context. Configure basic PPO parameters if you want:
+
+
 python
 Copy
 ppo = FullEnhancedPPOWithMetaLearning(
@@ -30,12 +32,11 @@ ppo = FullEnhancedPPOWithMetaLearning(
     ppo_epochs=10,
     batch_size=64
 )
-
 await ppo._initialize_pools()
 await ppo._subscribe_to_all_events()
 await ppo.train()
-The agent will start training and responding to system events.
 
+The agent will start training and responding to system events.
 Things to keep in mind
 This code is complex and best suited for experimentation and research, not production out of the box.
 The hierarchical decision-making adds layers that make debugging harder.
