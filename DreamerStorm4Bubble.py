@@ -24,7 +24,7 @@ References:
 
 Version: 1.0
 Author: Enhanced from community implementation
-License: Same as original bubbles_core
+License:
 """
 
 import asyncio
