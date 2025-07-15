@@ -93,3 +93,4 @@ await ppo._subscribe_to_all_events()
 await ppo.train()
 Agent will start training and react to live events.
 
+Next Step running on real IBM Quantum Hardware 
