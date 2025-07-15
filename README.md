@@ -3,6 +3,49 @@ If you use this project, please give appropriate credit by citing:
 Vincent Marquez, "Architecting Emergence: The Bubbles Network", 2025.
 GitHub: https://github.com/VincentMarquez/Bubbles-Network.
 
+Bubbles Network: Modular AI–Quantum Event-Driven Research Framework: Architecting Emergence: The Bubbles Network
+A fully modular, event-driven AI, quantum, and real-world automation research platform.
+Built for explainable, extensible, real-time AI systems in both simulation and the physical world.*
+
+Overview
+The Bubbles Network is a next-gen AI research and automation orchestration framework that combines:
+- Event-driven agent architecture ("bubbles")
+- Quantum fractal simulation (QFD, QML, Qiskit, PennyLane)
+- Meta-learning reinforcement learning (DreamerV3, Enhanced PPO)
+- LLM-powered synthesis, prompt/code auto-enhancement (APEP, Oracle, RAG)
+- Live hardware/resource monitoring (M4, Mac, multi-platform)
+- Home automation & IoT control (Home Assistant, pool, HVAC, lighting, sensors)
+- Automated discovery of mathematical and physical laws
+- Real-time web/CLI interaction, robust logging, and repair
+
+You can run massive, composable experiments with AI, RL, and quantum algorithms, observe emergent phenomena, discover new patterns and laws in complex systems, and control real hardware in your home automated or via chat/voice/web interface.
+
+---
+
+Real-World Automation & IoT Integration
+
+Beyond simulation, the Bubbles Network directly manages and adapts your real-world environment:
+- Home Assistant integration: Control lights, pumps, sensors, alarms, heating/cooling, and more, via the HomeAssistantBubble or PoolControlBubble.
+- Adaptive RL and Quantum control: Use AI or quantum RL to dynamically optimize pool chemistry, energy use, comfort, and device scheduling.
+- Event-driven automation: Set up custom automations, triggers, and feedback loops, or let the system learn emergent patterns for you.
+- Live feedback: All real-world state, metrics, and events are available to your RL agents, LLMs, and quantum models in real time.
+
+**Example:**  
+- Type `turn_on_pool` or `hw_profile performance` in chat—the system dispatches the right command, controls Home Assistant, and updates the state everywhere (including quantum/AI agents).
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
 
 This module implements a PPO agent with some extra features like:
 Breaking decisions into three parts (strategy, tactics, and actions).
