@@ -3,9 +3,17 @@ If you use this project, please give appropriate credit by citing:
 Vincent Marquez, "Architecting Emergence: The Bubbles Network", 2025.
 GitHub: https://github.com/VincentMarquez/Bubbles-Network.
 
+Disclaimer:
+This project is experimental and under active development. Some components are fully functional, while others are prototypes or works in progress and may not work as intended. Please use caution when integrating into production environments. Feedback and contributions are welcome!
+
+
 Bubbles Network: Modular AI–Quantum Event-Driven Research Framework: Architecting Emergence: The Bubbles Network
 A fully modular, event-driven AI, quantum, and real-world automation research platform.
 Built for explainable, extensible, real-time AI systems in both simulation and the physical world.*
+
+
+
+
 
 Overview
 The Bubbles Network is a next-gen AI research and automation orchestration framework that combines:
